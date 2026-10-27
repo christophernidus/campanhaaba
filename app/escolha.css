@@ -1,0 +1,155 @@
+/* Página de escolha entre as propostas. Escopada em .escolha */
+.escolha {
+  /* prévia renderizada a 1440px e reduzida; a altura cobre a página quase toda para o passeio no hover */
+  --es-escala: 0.24;
+  --es-largura: 1440px;
+  --es-altura-pagina: 3600px;
+  --es-janela: 900px;
+  background:
+    radial-gradient(60rem 40rem at 85% -10%, color-mix(in oklab, var(--celeste) 45%, transparent), transparent 70%),
+    radial-gradient(50rem 36rem at -10% 110%, color-mix(in oklab, var(--vinho) 40%, transparent), transparent 70%),
+    var(--azul);
+  color: var(--papel);
+}
+@media (width >= 40rem) {
+  .escolha {
+    --es-escala: 0.38;
+  }
+}
+@media (width >= 64rem) {
+  .escolha {
+    --es-escala: 0.36;
+  }
+}
+@media (width >= 80rem) {
+  .escolha {
+    --es-escala: 0.4;
+  }
+}
+
+.es-container {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+@media (width >= 40rem) {
+  .es-container {
+    padding-inline: 2rem;
+  }
+}
+
+.es-logos {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 999px;
+  background: var(--papel);
+}
+
+.es-titulo {
+  font-size: clamp(2.5rem, 5.6vw, 4.5rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+.es-subtitulo {
+  display: block;
+  margin-top: 0.75rem;
+  color: var(--celeste-claro);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  letter-spacing: -0.015em;
+}
+
+.es-link {
+  display: block;
+  border-radius: 1.25rem;
+}
+
+.es-moldura {
+  position: relative;
+  overflow: hidden;
+  height: calc(var(--es-janela) * var(--es-escala));
+  border-radius: 1rem;
+  background: var(--papel);
+  box-shadow:
+    0 0 0 1px color-mix(in oklab, var(--papel) 25%, transparent),
+    0 30px 60px -30px color-mix(in oklab, var(--azul-escuro) 90%, transparent);
+  transition:
+    transform 500ms var(--ease-out-expo),
+    box-shadow 500ms var(--ease-out-expo);
+}
+.es-previa {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--es-largura);
+  height: var(--es-altura-pagina);
+  border: 0;
+  pointer-events: none;
+  transform-origin: 0 0;
+  transform: scale(var(--es-escala));
+  transition: transform 6s cubic-bezier(0.45, 0, 0.25, 1);
+}
+.es-link:hover .es-moldura,
+.es-link:focus-visible .es-moldura {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 0 2px var(--celeste-claro),
+    0 40px 70px -30px color-mix(in oklab, var(--azul-escuro) 95%, transparent);
+}
+/* passeio pela página: a prévia sobe até perto do fim */
+.es-link:hover .es-previa,
+.es-link:focus-visible .es-previa {
+  transform: scale(var(--es-escala))
+    translateY(calc((var(--es-altura-pagina) - var(--es-janela)) * -1));
+}
+
+.es-nome {
+  display: block;
+  font-size: clamp(2rem, 3.4vw, 2.75rem);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.es-botao {
+  display: inline-flex;
+  align-items: center;
+  height: 3rem;
+  padding-inline: 1.5rem;
+  border-radius: 999px;
+  background: var(--papel);
+  color: var(--azul);
+  font-weight: 700;
+  transition:
+    background-color 200ms ease-out,
+    color 200ms ease-out;
+}
+.es-link:hover .es-botao {
+  background: var(--vinho);
+  color: var(--papel);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .es-titulo,
+  .es-card {
+    animation: es-sobe 900ms var(--ease-out-expo) both;
+  }
+  @keyframes es-sobe {
+    from {
+      opacity: 0;
+      transform: translateY(1.5rem);
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .es-previa {
+    transition: none;
+  }
+  .es-link:hover .es-previa {
+    transform: scale(var(--es-escala));
+  }
+}

@@ -1,0 +1,177 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Fontes explícitas: o cache do Turbopack em dev não enxergava pastas criadas depois do servidor subir */
+@source "../components";
+@source "../app";
+@source "../lib";
+
+:root {
+  /* Paleta oficial (style.css de campanhaaba.com.br) */
+  --vinho: #890e43;
+  --vinho-escuro: #6c0a34;
+  --celeste: #0096cb;
+  --celeste-claro: #9fdcf2;
+  --azul: #003886;
+  --azul-escuro: #001a58;
+  --rosa: #f1cae1;
+  --rosa-forte: #eec2db;
+  --whatsapp: #1fa855;
+  --papel: #fffcfd;
+  --tinta: #1c1c1c;
+  --cinza: #4d4b4c;
+  --linha: #d9d4dc;
+
+  /* Tokens do shadcn apontando para a marca */
+  --background: var(--papel);
+  --foreground: var(--tinta);
+  --card: var(--papel);
+  --card-foreground: var(--tinta);
+  --popover: var(--papel);
+  --popover-foreground: var(--tinta);
+  --primary: var(--vinho);
+  --primary-foreground: var(--papel);
+  --secondary: var(--rosa);
+  --secondary-foreground: var(--azul);
+  --muted: #f6f3f5;
+  --muted-foreground: var(--cinza);
+  --accent: var(--rosa);
+  --accent-foreground: var(--azul);
+  --destructive: #c62828;
+  --border: var(--linha);
+  --input: var(--linha);
+  --ring: var(--celeste);
+  --radius: 0.5rem;
+
+  --font-display: var(--font-figtree), ui-sans-serif, system-ui, sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --hero-actions: 7rem;
+
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
+  --color-vinho: var(--vinho);
+  --color-celeste: var(--celeste);
+  --color-celeste-claro: var(--celeste-claro);
+  --color-azul: var(--azul);
+  --color-azul-escuro: var(--azul-escuro);
+  --color-rosa: var(--rosa);
+  --color-rosa-forte: var(--rosa-forte);
+  --color-whatsapp: var(--whatsapp);
+  --color-white: var(--papel);
+  --color-papel: var(--papel);
+  --color-tinta: var(--tinta);
+  --font-sans: var(--font-display);
+}
+
+/* ---------- Base ---------- */
+html,
+body {
+  overflow-x: clip;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--vinho);
+  color: var(--papel);
+}
+
+:root {
+  scrollbar-color: var(--azul) var(--muted);
+  caret-color: var(--vinho);
+  accent-color: var(--vinho);
+}
+
+:focus-visible {
+  outline: 3px solid var(--celeste);
+  outline-offset: 3px;
+  transition: none;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+  min-width: 0;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* ---------- Compartilhado pelas propostas ---------- */
+.whatsapp-fab {
+  box-shadow: 0 10px 24px -10px color-mix(in oklab, var(--tinta) 55%, transparent);
+  transition: transform 300ms var(--ease-out-expo);
+}
+
+.whatsapp-fab:hover {
+  transform: scale(1.06);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Entrada suave ao rolar; sem suporte o conteúdo já aparece normal */
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: revelar linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 60%;
+    }
+    @keyframes revelar {
+      from {
+        opacity: 0;
+        transform: translateY(1.5rem);
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+}

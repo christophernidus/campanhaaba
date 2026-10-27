@@ -1,0 +1,548 @@
+/* Versão 1: Concretismo brasileiro. Tudo escopado em .concreto */
+.concreto {
+  --cz-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --cz-verde: #54c126;
+  font-family: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  background: var(--papel);
+}
+
+.cz-container {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+@media (width >= 40rem) {
+  .cz-container {
+    padding-inline: 2.5rem;
+  }
+}
+
+.cz-secao {
+  padding-block: 6rem;
+}
+@media (width >= 64rem) {
+  .cz-secao {
+    padding-block: 8.5rem;
+  }
+}
+
+/* ---------- Tipografia ---------- */
+.cz-display {
+  font-size: clamp(2.75rem, 5.4vw, 5rem);
+  line-height: 0.92;
+  font-weight: 800;
+  font-stretch: 110%;
+  letter-spacing: -0.035em;
+}
+.cz-h2 {
+  font-size: clamp(2.25rem, 4.4vw, 4rem);
+  line-height: 0.95;
+  font-weight: 800;
+  font-stretch: 112%;
+  letter-spacing: -0.03em;
+}
+.cz-h3 {
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  line-height: 1.05;
+  font-weight: 700;
+  font-stretch: 108%;
+  letter-spacing: -0.015em;
+}
+.cz-lead {
+  font-size: clamp(1.5rem, 2.4vw, 2.125rem);
+  line-height: 1.15;
+  font-weight: 500;
+}
+.cz-numeral {
+  font-size: clamp(5rem, 10vw, 9rem);
+  line-height: 0.8;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.05em;
+}
+.cz-numeral-sm {
+  font-size: 3.5rem;
+  line-height: 0.8;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.04em;
+}
+
+/* ---------- Cabeçalho ---------- */
+.cz-header {
+  background: color-mix(in oklab, var(--papel) 88%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom: 1px solid color-mix(in oklab, var(--azul) 12%, transparent);
+}
+.cz-header-sep {
+  width: 2px;
+  height: 2rem;
+  background: var(--celeste);
+}
+.cz-nav-link,
+.cz-link {
+  color: var(--azul);
+  font-weight: 600;
+  background: linear-gradient(var(--vinho), var(--vinho)) left bottom / 0 2px no-repeat;
+  padding-bottom: 2px;
+  transition: background-size 350ms var(--ease-out-expo), color 200ms ease-out;
+}
+.cz-nav-link:hover,
+.cz-link:hover {
+  background-size: 100% 2px;
+  color: var(--vinho);
+}
+
+/* ---------- Botão ---------- */
+.cz-botao {
+  position: relative;
+  overflow: hidden;
+  height: 3.5rem;
+  padding-inline: 1.75rem 4.25rem;
+  border-radius: 0;
+  background: var(--azul);
+  color: var(--papel);
+  font-size: 1.125rem;
+  font-weight: 700;
+  font-stretch: 110%;
+}
+.cz-botao:hover {
+  background: var(--azul);
+}
+.cz-botao-circulo {
+  position: absolute;
+  right: 0.875rem;
+  top: 50%;
+  width: 1.75rem;
+  height: 1.75rem;
+  margin-top: -0.875rem;
+  border-radius: 50%;
+  background: var(--celeste);
+  transition: transform 600ms var(--cz-ease), background-color 300ms ease-out;
+}
+.cz-botao:hover .cz-botao-circulo {
+  transform: scale(1.35);
+  background: var(--rosa);
+}
+.cz-botao:active .cz-botao-circulo {
+  transform: scale(0.85);
+}
+.cz-botao-compacto {
+  height: 2.75rem;
+  padding-inline: 1.125rem 3.25rem;
+  font-size: 1rem;
+}
+.cz-botao-compacto .cz-botao-circulo {
+  right: 0.625rem;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: -0.625rem;
+}
+
+/* ---------- Hero ---------- */
+.cz-composicao {
+  position: relative;
+  aspect-ratio: 1 / 0.92;
+  width: 100%;
+  max-width: 40rem;
+  margin-inline: auto;
+}
+.cz-forma {
+  position: absolute;
+  display: block;
+}
+.cz-forma-circulo {
+  top: 4%;
+  left: 12%;
+  width: 86%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--celeste);
+}
+.cz-forma-quarto {
+  left: -4%;
+  bottom: -4%;
+  width: 46%;
+  aspect-ratio: 1;
+  background: var(--vinho);
+  border-top-right-radius: 100%;
+}
+.cz-forma-meia {
+  right: 0;
+  top: 0;
+  width: 26%;
+  aspect-ratio: 2 / 1;
+  background: var(--azul);
+  border-radius: 999px 999px 0 0;
+}
+/* o ponto verde encosta na borda do círculo, como um satélite */
+.cz-forma-ponto {
+  left: 13%;
+  top: 22%;
+  width: 7%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--cz-verde);
+}
+.cz-podio {
+  position: absolute;
+  left: 4%;
+  right: 0;
+  bottom: 4%;
+  width: 96%;
+  height: auto;
+  filter: drop-shadow(0 30px 30px color-mix(in oklab, var(--azul-escuro) 35%, transparent));
+}
+
+/* ---------- Régua ---------- */
+.cz-regua {
+  border-top: 2px solid var(--azul);
+  padding-top: 2.25rem;
+}
+.regua-trilho {
+  position: relative;
+  height: 6px;
+  background: color-mix(in oklab, var(--azul) 14%, transparent);
+}
+.regua-feito {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 100%;
+  background: var(--vinho);
+  transform-origin: left center;
+  transition: transform 1.2s var(--ease-out-expo);
+}
+.regua-ponto {
+  position: absolute;
+  top: 50%;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 50%;
+  background: var(--azul);
+  box-shadow: 0 0 0 3px var(--papel);
+}
+.regua-hoje {
+  position: absolute;
+  bottom: 14px;
+  translate: -50% 0;
+  padding: 0.125rem 0.625rem;
+  background: var(--vinho);
+  color: var(--papel);
+  font-size: 0.875rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.regua-hoje::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 2px;
+  height: 12px;
+  background: var(--vinho);
+}
+.regua-legenda {
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+}
+@media (width >= 48rem) {
+  .regua-legenda {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.regua-legenda li {
+  display: flex;
+  flex-direction: column;
+}
+.regua-data {
+  font-size: 1.75rem;
+  font-weight: 800;
+  font-stretch: 115%;
+  line-height: 1;
+  color: var(--azul);
+}
+.regua-label {
+  margin-top: 0.25rem;
+  color: color-mix(in oklab, var(--tinta) 75%, transparent);
+}
+
+/* ---------- Mensagem ---------- */
+.cz-msg-forma {
+  position: absolute;
+  right: -10rem;
+  bottom: -14rem;
+  width: 34rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3.5rem solid color-mix(in oklab, var(--vinho) 14%, transparent);
+}
+
+/* ---------- Passos ---------- */
+.cz-passo-forma {
+  display: grid;
+  place-items: center;
+  width: 9rem;
+  aspect-ratio: 1;
+  font-size: 5rem;
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 1;
+  color: var(--papel);
+  transition: transform 700ms var(--cz-ease);
+}
+li:hover > .cz-passo-forma {
+  transform: rotate(-8deg) scale(1.04);
+}
+.cz-passo-circulo {
+  border-radius: 50%;
+  background: var(--celeste);
+  color: var(--azul-escuro);
+}
+.cz-passo-quadrado {
+  background: var(--vinho);
+}
+.cz-passo-quarto {
+  background: var(--azul);
+  border-top-right-radius: 100%;
+  place-items: end start;
+  padding: 0 0 0.5rem 1rem;
+}
+
+/* ---------- Prêmios ---------- */
+.cz-palco {
+  position: relative;
+  padding-top: 2rem;
+}
+.cz-palco-meia {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  bottom: -2.5rem;
+  aspect-ratio: 2 / 1;
+  background: var(--celeste);
+  border-radius: 999px 999px 0 0;
+}
+.cz-corolla {
+  position: relative;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 24px 24px color-mix(in oklab, var(--azul-escuro) 55%, transparent));
+}
+.cz-premio-palco {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  max-width: 17rem;
+}
+.cz-premio-palco::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  transition: transform 700ms var(--cz-ease);
+}
+.cz-fundo-circulo::before {
+  border-radius: 50%;
+  background: var(--rosa);
+}
+.cz-fundo-quadrado::before {
+  background: var(--celeste);
+}
+.cz-fundo-quarto::before {
+  background: var(--vinho);
+  border-top-left-radius: 100%;
+}
+.cz-fundo-circulo-verde::before {
+  border-radius: 50%;
+  background: var(--cz-verde);
+}
+.cz-premio-img {
+  position: relative;
+  width: 82%;
+  height: 72%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 16px color-mix(in oklab, var(--azul-escuro) 45%, transparent));
+  transition: transform 700ms var(--cz-ease);
+}
+.cz-premio:hover .cz-premio-palco::before {
+  transform: rotate(-10deg) scale(0.94);
+}
+.cz-premio:hover .cz-premio-img {
+  transform: translateY(-8px) scale(1.05);
+}
+
+/* ---------- Ganhadores ---------- */
+.cz-data-bloco {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  padding-block: 2rem;
+}
+.cz-data-circulo {
+  position: absolute;
+  right: -4rem;
+  top: 50%;
+  width: min(30rem, 80vw);
+  aspect-ratio: 1;
+  translate: 0 -50%;
+  border-radius: 50%;
+  background: var(--celeste);
+}
+.cz-data {
+  display: block;
+  font-size: clamp(5.5rem, 15vw, 13rem);
+  line-height: 0.85;
+  font-weight: 800;
+  font-stretch: 125%;
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Dúvidas ---------- */
+.cz-faq {
+  border-top: 2px solid var(--azul);
+}
+.cz-faq-item {
+  border-bottom: 2px solid color-mix(in oklab, var(--azul) 18%, transparent);
+}
+.cz-faq-trigger {
+  padding-block: 1.5rem;
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: var(--azul);
+  gap: 1.5rem;
+}
+.cz-faq-trigger:hover {
+  color: var(--vinho);
+}
+.cz-faq-trigger svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  padding: 0.25rem;
+  border-radius: 50%;
+  background: var(--celeste);
+  color: var(--papel);
+}
+.cz-faq-conteudo {
+  padding-bottom: 1.75rem;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  color: color-mix(in oklab, var(--tinta) 82%, transparent);
+  max-width: 68ch;
+}
+.cz-faq-conteudo a {
+  color: var(--vinho);
+}
+
+/* ---------- Projeto ---------- */
+.cz-banner {
+  display: block;
+  overflow: hidden;
+  border-bottom-right-radius: 9rem;
+  transition: border-radius 700ms var(--cz-ease);
+}
+.cz-banner img {
+  transition: transform 900ms var(--ease-out-expo);
+}
+.cz-banner:hover {
+  border-bottom-right-radius: 3rem;
+}
+.cz-banner:hover img {
+  transform: scale(1.03);
+}
+.cz-relatorio {
+  transition: color 200ms ease-out;
+}
+.cz-relatorio:hover {
+  color: var(--vinho);
+}
+.cz-relatorio-icone {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: var(--azul);
+  color: var(--papel);
+  transition: transform 500ms var(--cz-ease), background-color 200ms ease-out;
+}
+.cz-relatorio:hover .cz-relatorio-icone {
+  transform: translateY(3px);
+  background: var(--vinho);
+}
+
+/* ---------- Rodapé ---------- */
+.cz-faixa {
+  height: 1rem;
+  background: var(--c);
+}
+.cz-social {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  color: var(--azul);
+  border: 2px solid var(--azul);
+  transition: background-color 200ms ease-out, color 200ms ease-out;
+}
+.cz-social:hover {
+  background: var(--azul);
+  color: var(--papel);
+}
+
+/* ---------- Movimento: as formas entram com mola ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .cz-forma {
+    animation: cz-pop 1100ms var(--cz-ease) both;
+  }
+  .cz-forma-circulo {
+    animation-delay: 60ms;
+  }
+  .cz-forma-quarto {
+    animation-delay: 200ms;
+    transform-origin: left bottom;
+  }
+  .cz-forma-meia {
+    animation-delay: 300ms;
+    transform-origin: center bottom;
+  }
+  .cz-forma-quadrado {
+    animation-delay: 380ms;
+  }
+  .cz-forma-ponto {
+    animation-delay: 460ms;
+  }
+  .cz-podio {
+    animation: cz-sobe 1200ms var(--cz-ease) 420ms both;
+  }
+  .cz-display {
+    animation: cz-texto 900ms var(--ease-out-expo) both;
+  }
+
+  @keyframes cz-pop {
+    from {
+      transform: scale(0);
+    }
+  }
+  @keyframes cz-sobe {
+    from {
+      opacity: 0;
+      transform: translateY(3rem);
+    }
+  }
+  @keyframes cz-texto {
+    from {
+      clip-path: inset(0 0 100% 0);
+      transform: translateY(1rem);
+    }
+    to {
+      clip-path: inset(0 0 -10% 0);
+    }
+  }
+}

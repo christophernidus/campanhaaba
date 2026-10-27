@@ -1,0 +1,445 @@
+/* Versão 3: Bilhete destacável. Tudo escopado em .bilhete */
+.bilhete {
+  --bt-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --bt-cupom: #fdf8f2;
+  font-family: var(--font-barlow), ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--azul);
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--azul-escuro) 14%, transparent) 0 1px,
+    transparent 1px 14px
+  );
+}
+
+.bt-container {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+@media (width >= 40rem) {
+  .bt-container {
+    padding-inline: 2.5rem;
+  }
+}
+
+.bt-secao {
+  padding-block: 5.5rem;
+}
+@media (width >= 64rem) {
+  .bt-secao {
+    padding-block: 7.5rem;
+  }
+}
+.bt-hero + .bt-secao {
+  padding-top: 2.5rem;
+}
+.bt-secao-papel {
+  background: var(--rosa);
+}
+.bt-secao-rosa {
+  background: var(--rosa-forte);
+}
+
+/* ---------- Tipografia ---------- */
+.bt-display {
+  font-family: var(--font-bt-cond), sans-serif;
+  font-size: clamp(2.75rem, 4.6vw, 4.25rem);
+  line-height: 0.92;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  color: var(--azul);
+}
+.bt-h2 {
+  font-family: var(--font-bt-cond), sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.25rem);
+  line-height: 0.92;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.bt-h3 {
+  font-family: var(--font-bt-cond), sans-serif;
+  font-size: clamp(1.5rem, 2.2vw, 1.875rem);
+  line-height: 1.05;
+  font-weight: 600;
+}
+/* Rótulo de campo do cupom: gramática do próprio bilhete */
+.bt-rotulo {
+  font-family: var(--font-bt-cond), sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: color-mix(in oklab, var(--azul) 80%, transparent);
+}
+.bt-carbono {
+  font-family: var(--font-carbono), ui-monospace, monospace;
+  font-weight: 700;
+  color: var(--vinho);
+  text-shadow: 0.6px 0.4px 0 color-mix(in oklab, var(--vinho) 45%, transparent);
+  font-variant-numeric: tabular-nums;
+}
+.bt-carbono-vazio {
+  font-size: 2.25rem;
+  letter-spacing: 0.05em;
+  color: color-mix(in oklab, var(--vinho) 55%, transparent);
+}
+
+/* ---------- Cabeçalho ---------- */
+.bt-header {
+  background: var(--bt-cupom);
+  border-bottom: 2px dashed color-mix(in oklab, var(--azul) 30%, transparent);
+}
+.bt-nav-link,
+.bt-link {
+  font-family: var(--font-bt-cond), sans-serif;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--azul);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 200ms ease-out, color 200ms ease-out;
+}
+.bt-link {
+  font-family: inherit;
+  font-size: inherit;
+}
+.bt-nav-link:hover,
+.bt-link:hover {
+  color: var(--vinho);
+  text-decoration-color: currentColor;
+}
+
+/* ---------- Botão ---------- */
+.bt-botao {
+  height: 3.5rem;
+  padding-inline: 2rem;
+  border-radius: 0.375rem;
+  background: var(--vinho);
+  color: var(--papel);
+  font-family: var(--font-bt-cond), sans-serif;
+  font-size: 1.375rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  box-shadow: 0 4px 0 var(--vinho-escuro);
+  transition: transform 150ms ease-out, box-shadow 150ms ease-out, background-color 200ms ease-out;
+}
+.bt-botao:hover {
+  background: var(--vinho);
+  transform: translateY(-1px);
+  box-shadow: 0 5px 0 var(--vinho-escuro);
+}
+.bt-botao:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--vinho-escuro);
+}
+.bt-botao-compacto {
+  height: 2.75rem;
+  padding-inline: 1.25rem;
+  font-size: 1.125rem;
+}
+
+/* ---------- Cupom ---------- */
+.bt-cupom {
+  --canhoto: 17rem;
+  --furo: 14px;
+  display: block;
+  filter: drop-shadow(0 18px 24px color-mix(in oklab, var(--azul-escuro) 45%, transparent));
+}
+.bt-papel {
+  background: var(--bt-cupom);
+  color: var(--tinta);
+  border-radius: 1rem;
+}
+.bt-cupom-corpo {
+  padding: 1.5rem;
+  min-width: 0;
+}
+@media (width >= 64rem) {
+  .bt-cupom-corpo {
+    padding: 2rem 2.25rem;
+  }
+}
+.bt-canhoto {
+  padding: 1.5rem;
+  border-top: 2px dashed color-mix(in oklab, var(--azul) 40%, transparent);
+  background: color-mix(in oklab, var(--rosa) 35%, var(--bt-cupom));
+  border-radius: 0 0 1rem 1rem;
+}
+@media (width >= 64rem) {
+  .bt-papel-com-canhoto {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--canhoto);
+    /* recortes semicirculares em cima e embaixo do picote */
+    mask:
+      radial-gradient(circle var(--furo) at calc(100% - var(--canhoto)) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+      radial-gradient(circle var(--furo) at calc(100% - var(--canhoto)) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+  }
+  .bt-canhoto {
+    border-top: 0;
+    border-left: 2px dashed color-mix(in oklab, var(--azul) 40%, transparent);
+    border-radius: 0 1rem 1rem 0;
+    transform-origin: left top;
+    transition: transform 600ms var(--bt-ease);
+  }
+  .bt-papel-com-canhoto:hover .bt-canhoto {
+    transform: rotate(1.4deg) translateX(4px);
+  }
+}
+
+.bt-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+.bt-valor {
+  font-family: var(--font-carbono), ui-monospace, monospace;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: var(--azul);
+}
+.bt-campos {
+  border-top: 1px solid color-mix(in oklab, var(--azul) 25%, transparent);
+}
+.bt-campos > .bt-campo {
+  padding: 0.875rem 1rem 0.25rem 0;
+}
+@media (width >= 40rem) {
+  .bt-campos > .bt-campo + .bt-campo {
+    padding-left: 1rem;
+    border-left: 1px solid color-mix(in oklab, var(--azul) 25%, transparent);
+  }
+}
+.bt-podio {
+  filter: drop-shadow(0 20px 20px color-mix(in oklab, var(--azul-escuro) 30%, transparent));
+}
+
+/* Passos */
+.bt-cupom-passo {
+  --canhoto: 6.5rem;
+}
+.bt-cupom-passo .bt-papel-com-canhoto {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--canhoto);
+  mask:
+    radial-gradient(circle 12px at calc(100% - var(--canhoto)) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+    radial-gradient(circle 12px at calc(100% - var(--canhoto)) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+}
+.bt-cupom-passo .bt-canhoto {
+  display: grid;
+  place-items: center;
+  border-top: 0;
+  border-left: 2px dashed color-mix(in oklab, var(--azul) 40%, transparent);
+  border-radius: 0 1rem 1rem 0;
+}
+.bt-passo-num {
+  font-size: 4rem;
+  line-height: 1;
+}
+
+/* Prêmios */
+.bt-cupom-carro {
+  --canhoto: 13rem;
+}
+.bt-carro {
+  height: auto;
+  transition: transform 700ms var(--ease-out-expo);
+}
+.bt-cupom-carro:hover .bt-carro {
+  transform: translateX(-10px) scale(1.02);
+}
+.bt-etiqueta {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 3rem 1.5rem 1.75rem;
+  background: var(--bt-cupom);
+  clip-path: polygon(14% 0, 86% 0, 100% 9%, 100% 100%, 0 100%, 0 9%);
+  border-radius: 0 0 0.75rem 0.75rem;
+  transition: transform 600ms var(--bt-ease);
+  transform-origin: 50% 0;
+}
+.bt-etiqueta:hover {
+  transform: rotate(-2.5deg);
+}
+.bt-etiqueta-furo {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: -0.625rem;
+  border-radius: 50%;
+  background: var(--rosa);
+  box-shadow: inset 0 0 0 3px color-mix(in oklab, var(--azul) 35%, transparent);
+}
+.bt-etiqueta-img {
+  width: 100%;
+  height: 9rem;
+  object-fit: contain;
+  margin-block: 0.75rem;
+}
+
+/* Ganhadores */
+.bt-cupom-ganhadores {
+  --canhoto: 18rem;
+}
+.bt-carimbo {
+  justify-self: start;
+  padding: 0.75rem 1.25rem;
+  border: 4px solid var(--vinho);
+  border-radius: 0.5rem;
+  color: var(--vinho);
+  font-family: var(--font-bt-cond), sans-serif;
+  font-size: 2rem;
+  line-height: 0.95;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-align: center;
+  rotate: -8deg;
+  mix-blend-mode: multiply;
+  opacity: 0.88;
+}
+
+/* Dúvidas */
+.bt-folheto {
+  padding: 2rem 1.5rem;
+  background: var(--bt-cupom);
+  border-radius: 1rem;
+  box-shadow: 0 18px 40px -20px color-mix(in oklab, var(--azul-escuro) 60%, transparent);
+}
+@media (width >= 64rem) {
+  .bt-folheto {
+    padding: 3.5rem;
+  }
+}
+.bt-faq-item {
+  border-bottom: 2px dashed color-mix(in oklab, var(--azul) 25%, transparent);
+}
+.bt-faq-trigger {
+  padding-block: 1.25rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--azul);
+}
+.bt-faq-trigger:hover {
+  color: var(--vinho);
+}
+.bt-faq-trigger svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: var(--vinho);
+}
+.bt-faq-conteudo {
+  padding-bottom: 1.5rem;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  max-width: 68ch;
+  color: color-mix(in oklab, var(--tinta) 82%, transparent);
+}
+.bt-faq-conteudo a {
+  color: var(--vinho);
+}
+
+/* Projeto */
+.bt-banner {
+  display: block;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 18px 40px -20px color-mix(in oklab, var(--azul-escuro) 60%, transparent);
+}
+.bt-banner img {
+  transition: transform 800ms var(--ease-out-expo);
+}
+.bt-banner:hover img {
+  transform: scale(1.025);
+}
+.bt-relatorio {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.875rem 1.25rem;
+  border: 2px dashed color-mix(in oklab, var(--azul) 35%, transparent);
+  border-radius: 0.5rem;
+  color: color-mix(in oklab, var(--tinta) 75%, transparent);
+  font-weight: 600;
+}
+.bt-relatorio-ativo {
+  border-style: solid;
+  border-color: var(--azul);
+  background: var(--azul);
+  color: var(--papel);
+  transition: background-color 200ms ease-out;
+}
+.bt-relatorio-ativo:hover {
+  background: var(--vinho);
+  border-color: var(--vinho);
+}
+
+/* Rodapé */
+.bt-footer {
+  background: var(--bt-cupom);
+}
+.bt-social {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 0.5rem;
+  border: 2px dashed var(--azul);
+  color: var(--azul);
+  transition: background-color 200ms ease-out, color 200ms ease-out;
+}
+.bt-social:hover {
+  background: var(--azul);
+  border-style: solid;
+  color: var(--papel);
+}
+
+/* ---------- Movimento: o bilhete sai da carteira e o carimbo é batido ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  .bt-cupom-hero {
+    animation: bt-sai 1100ms var(--bt-ease) both;
+  }
+  .bt-cupom-hero .bt-canhoto {
+    animation: bt-canhoto 900ms var(--bt-ease) 450ms both;
+  }
+  @supports (animation-timeline: view()) {
+    .bt-carimbo {
+      animation: bt-carimbar linear both;
+      animation-timeline: view();
+      animation-range: entry 30% cover 40%;
+    }
+  }
+
+  @keyframes bt-sai {
+    from {
+      opacity: 0;
+      transform: translateY(4rem) rotate(-1.5deg);
+    }
+  }
+  @keyframes bt-canhoto {
+    from {
+      transform: rotate(3deg) translateX(10px);
+    }
+  }
+  @keyframes bt-carimbar {
+    0% {
+      opacity: 0;
+      transform: scale(1.8);
+    }
+    60% {
+      opacity: 0.88;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0.88;
+      transform: scale(1);
+    }
+  }
+}
