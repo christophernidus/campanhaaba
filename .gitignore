@@ -43,3 +43,5 @@ next-env.d.ts
 # ferramentas de design (capturas locais)
 .hallmark/
 .impeccable/
+
+.vercel
